@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}доска объявлений{% endblock %}
+{% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Доска объявлений</a>
+                {% if current_user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('actions_view.index') }}">Главная страница</a></li>
+                    <li><a href="{{ url_for('actions_view.upload') }}">Обновить свои объявления</a></li>
+                    <li><a href="{{ url_for('actions_view.drop') }}">Удалить свое объявление</a></li>
+                </ul>
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('auth_view.logout') }}">Выход</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('auth_view.login') }}">Логин</a></li>
+                    <li><a href="{{ url_for('auth_view.register') }}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

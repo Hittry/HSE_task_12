@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}Обновить свои объявления{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <div class="container">
+            <h3>
+                {% for message in get_flashed_messages() %}
+                {{ message }}
+                {% endfor %}
+            </h3>
+        </div>
+    </div>
+    <div class="container">
+        <form method="post" id="action_form" accept-charset="utf-8" onsubmit="document.charset='utf-8'">
+            {{ wtf.quick_form(form) }}
+        </form>
+    </div>
+
+    <div class="container">
+        <ul class="Upload">
+            <h4>
+            {% for message in messages %}
+                <li>
+                    <div>
+                        id: {{message.id}},   имя пользователя: {{message.user.username}},    Дата публикации: {{message.timestamp}}
+                    </div>
+                    <div>
+                        {{message.msg}}
+                    </div>
+                </li>
+                {% endfor %}
+            </h4>
+        </ul>
+    </div>
+{% endblock %}
